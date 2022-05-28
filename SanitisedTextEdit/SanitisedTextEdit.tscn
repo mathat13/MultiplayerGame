@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Resource/Font/micross.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://SanitisedTextEdit/SanitisedTextEdit.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="Theme" id=5]
+HScrollBar/icons/decrement = null
+HScrollBar/icons/decrement_highlight = null
+HScrollBar/icons/decrement_pressed = null
+HScrollBar/icons/increment = null
+HScrollBar/icons/increment_highlight = null
+HScrollBar/icons/increment_pressed = null
+HScrollBar/styles/grabber = SubResource( 6 )
+HScrollBar/styles/grabber_highlight = SubResource( 6 )
+HScrollBar/styles/grabber_pressed = SubResource( 6 )
+HScrollBar/styles/scroll = SubResource( 6 )
+HScrollBar/styles/scroll_focus = SubResource( 6 )
+VScrollBar/icons/decrement = null
+VScrollBar/icons/decrement_highlight = null
+VScrollBar/icons/decrement_pressed = null
+VScrollBar/icons/increment = null
+VScrollBar/icons/increment_highlight = null
+VScrollBar/icons/increment_pressed = null
+VScrollBar/styles/grabber = SubResource( 4 )
+VScrollBar/styles/grabber_highlight = SubResource( 4 )
+VScrollBar/styles/grabber_pressed = SubResource( 4 )
+VScrollBar/styles/scroll = SubResource( 4 )
+VScrollBar/styles/scroll_focus = SubResource( 4 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 25
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+content_margin_left = 5.0
+bg_color = Color( 0, 0, 0, 1 )
+
+[node name="SanitisedTextEdit" type="TextEdit"]
+margin_left = 363.0
+margin_top = 175.0
+margin_right = 563.0
+margin_bottom = 210.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 2
+theme = SubResource( 5 )
+custom_fonts/font = SubResource( 3 )
+custom_styles/normal = SubResource( 7 )
+draw_spaces = true
+script = ExtResource( 2 )
+
+[connection signal="text_changed" from="." to="." method="_on_SanitisedTextEdit_text_changed"]
