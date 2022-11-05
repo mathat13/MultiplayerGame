@@ -1,8 +1,9 @@
 extends KinematicBody2D
 
 var velocity = Vector2(0,0)
-const accel:float = 6.0
-const max_velocity = 300
+
+export var accel:float = 6.0
+export var max_velocity = 300
 
 
 func get_movement_vector():

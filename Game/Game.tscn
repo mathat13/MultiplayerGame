@@ -8,5 +8,7 @@
 script = ExtResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
+accel = 100.0
+max_velocity = 5000
 
 [node name="Dog" parent="." instance=ExtResource( 1 )]
