@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Lobby/Lobby.gd" type="Script" id=1]
 [ext_resource path="res://Resource/Font/micross.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://SanitisedTextEdit/SanitisedTextEdit.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Lobby/WaitingRoom.tscn" type="PackedScene" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -123,6 +124,8 @@ margin_bottom = 20.0
 rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 2
 text = "Join Game"
+
+[node name="WaitingRoom" parent="." instance=ExtResource( 4 )]
 
 [connection signal="text_changed" from="VBoxContainer/HBoxContainer4/NameTextEdit" to="." method="_on_NameTextEdit_text_changed"]
 [connection signal="text_changed" from="VBoxContainer/HBoxContainer/IPAddressTextEdit" to="." method="_on_IPAddressTextEdit_text_changed"]

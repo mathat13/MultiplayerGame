@@ -3,9 +3,7 @@ extends Node
 const SAVEGAME = "user://save.json"
 var save_data = {}
 var default_data = {
-	"player_name" : "player",
-	"selected_ip" : Network.DEFAULT_IP,
-	"selected_port" : str(Network.DEFAULT_PORT),
+	"player_name" : "player"
 }
 
 func _ready():

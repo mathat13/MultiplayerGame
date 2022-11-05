@@ -3,6 +3,7 @@ extends Node
 const DEFAULT_IP = "127.0.0.1"
 const DEFAULT_PORT = 42069
 const MAX_PLAYERS = 8
+const ENABLE_UPNP = false
 var selected_ip = DEFAULT_IP
 var selected_port = DEFAULT_PORT
 var local_player_id = 0
@@ -12,6 +13,14 @@ sync var players = {}
 func _ready():
 	get_tree().connect("network_peer_connected", self, '_on_player_connected')
 	get_tree().connect("network_peer_disconnected", self, '_on_player_disconnected')
+	_upnp_setup()
+	
+func _upnp_setup():
+	if ENABLE_UPNP:
+		var upnp = UPNP.new()
+		upnp.discover()
+		upnp.add_port_mapping(selected_port)
+	
 
 func create_server():
 	var peer = NetworkedMultiplayerENet.new()
@@ -26,7 +35,7 @@ func connect_to_server():
 	get_tree().set_network_peer(peer)
 
 func add_to_playerlist():
-	player_data = Save.save_data['player_name']
+	player_data = Save.save_data
 	local_player_id = get_tree().get_network_unique_id()
 	players[local_player_id] = player_data
 
@@ -38,7 +47,10 @@ remote func _send_player_info(id, player_info):
 	players[id] = player_info
 	if get_tree().is_network_server():
 		rset('players', players)
-		print(players)
+		rpc('update_waiting_room')
+		
+sync func update_waiting_room():
+	get_tree().call_group("waiting_room", "refresh_players", players)
 
 func _on_player_connected(id):
 	pass #players[id]
